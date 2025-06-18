@@ -8,19 +8,18 @@ datasource db {
 }
 
 model Product {
-  id          String   @id @default(cuid())
-  externalId  String   @unique
-  name        String
-  price       Decimal  @db.Decimal(10, 2)
-  description String?
-  image       String?
-  category    String?
-  material    String?
-  department  String?
-  provider    String?
-  available   Boolean? @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id            String   @id @default(cuid())
+  externalId    String   @unique
+  name          String
+  price         Decimal  @db.Decimal(10, 2)
+  description   String?
+  image         String?
+  material      String?
+  provider      String?
+  discountValue Decimal? @db.Decimal(10, 2)
+  available     Boolean? @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   orderItems OrderItem[]
 

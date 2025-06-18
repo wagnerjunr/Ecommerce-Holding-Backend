@@ -5,9 +5,8 @@ export interface ProductDto {
   price: number;
   description?: string;
   image?: string;
-  category?: string;
   material?: string;
-  department?: string;
   provider?: string;
   available?: boolean;
+  discountValue?: number;
 }
