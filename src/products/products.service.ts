@@ -11,20 +11,11 @@ export class ProductsService {
     private readonly httpService: HttpService,
   ) {}
 
-  async getAllBrazilianProducts(): Promise<ProductDto[]> {
+  async getAllProducts(): Promise<ProductDto[]> {
     try {
       const brazilianProducts = await this.getBrazilianProducts();
-      return brazilianProducts;
-    } catch (error) {
-      this.logger.error('Erro ao buscar produtos:', error);
-      return [];
-    }
-  }
-
-  async getAllEuropeanProducts(): Promise<ProductDto[]> {
-    try {
       const europeanProducts = await this.getEuropeanProducts();
-      return europeanProducts;
+      return [...brazilianProducts, ...europeanProducts];
     } catch (error) {
       this.logger.error('Erro ao buscar produtos:', error);
       return [];
