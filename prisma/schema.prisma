@@ -7,6 +7,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  password     String
+  name         String?
+  refreshToken String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  orders Order[]
+
+  @@map("users")
+}
+
 model Product {
   id            String   @id @default(cuid())
   externalId    String   @unique
@@ -34,8 +48,11 @@ model Order {
   status        OrderStatus @default(PENDING)
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
+  userId        String?
 
   items OrderItem[]
+
+  user User? @relation(fields: [userId], references: [id])
 
   @@map("orders")
 }
