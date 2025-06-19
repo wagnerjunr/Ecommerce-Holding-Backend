@@ -23,7 +23,6 @@ export class AuthService {
       throw new BadRequestException('Password deve ter pelo menos 6 caracteres');
     }
 
-    // Verificar se usuário já existe
     const existingUser = await this.prisma.user.findUnique({ where: { email } });
     if (existingUser) {
       throw new BadRequestException('Usuário já existe com este email');
@@ -46,6 +45,29 @@ export class AuthService {
         email: user.email,
         name: user.name,
       },
+    };
+  }
+
+  async logoutUser(cookies: any) {
+    console.log('Cookies recebidos:', cookies);
+    
+    if (!cookies || !cookies.refreshToken) {
+      throw new BadRequestException('Usuário não está logado ou token não encontrado');
+    }
+    
+    const { refreshToken } = cookies;
+
+    await this.prisma.user.updateMany({
+      where: {
+        refreshToken: refreshToken,
+      },
+      data: {
+        refreshToken: null,
+      },
+    });
+
+    return {
+      message: 'Usuario deslogado com sucesso',
     };
   }
 
