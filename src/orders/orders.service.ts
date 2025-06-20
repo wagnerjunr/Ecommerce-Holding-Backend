@@ -41,8 +41,9 @@ export class OrdersService {
     return order; 
   }
 
-  async getAllOrders() {
-    return this.prisma.order.findMany({
+  async getAllOrdersByUserId(userId: string) {
+    const orders = this.prisma.order.findMany({
+      where: { userId },
       include: {
         items: true,
         address: true,
@@ -58,6 +59,7 @@ export class OrdersService {
         createdAt: 'desc',
       },
     });
+    return orders;
   }
 
   async getOrderById(id: string) {
