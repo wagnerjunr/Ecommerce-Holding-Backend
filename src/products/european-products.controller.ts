@@ -7,6 +7,6 @@ export class EuropeanProductsController {
   
   @Get(':id')
   async getEuropeanProductById(@Param('id') id: string) {
-    return this.productsService.getProductById(id);
+    return this.productsService.getProductByIdEuropean(id);
   }
 }

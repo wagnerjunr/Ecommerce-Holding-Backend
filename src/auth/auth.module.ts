@@ -25,7 +25,8 @@ export class AuthModule implements NestModule {
         'auth/login',
         'auth/register',
         'products',
-        'products/:id',
+        'products/brazilian/:id',
+        'products/european/:id',
         'users/:id',
       )
       .forRoutes('*'); 

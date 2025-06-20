@@ -89,6 +89,32 @@ export class ProductsService {
         image: response.data.imagem,
         provider: 'brazilian',
         available: true,
+        material: response.data.material,
+      };
+    } catch (error) {
+      this.logger.error('Erro ao buscar produto:', error);
+      return null;
+    }
+  }
+
+  async getProductByIdEuropean(id: string): Promise<ProductDto | null> {
+    try {
+      const response = await firstValueFrom(
+        this.httpService.get(
+          `http://616d6bdb6dacbb001794ca17.mockapi.io/devnology/european_provider/${id}`
+        )
+      );
+      return {
+        id: response.data.id,
+        externalId: response.data.id,
+        name: response.data.name,
+        price: parseFloat(response.data.price),
+        description: response.data.description,
+        image: response.data.gallery[0],
+        provider: 'european',
+        available: true,
+        discountValue: response.data.discountValue,
+        material: response.data.details.material,
       };
     } catch (error) {
       this.logger.error('Erro ao buscar produto:', error);
