@@ -7,13 +7,15 @@ import { Decimal } from '@prisma/client/runtime/library';
 export class OrdersService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async createOrder(createOrderDto: CreateOrderDto) {
-    const { items, total, customerName, customerEmail } = createOrderDto;
+  async createOrder(createOrderDto: CreateOrderDto, userId: string) {
+    const { items, total, addressId } = createOrderDto;
 
-    return this.prisma.order.create({
+    console.log(items)
+
+    const order = await this.prisma.order.create({
       data: {
-        customerName,
-        customerEmail,
+        userId: userId,
+        addressId: addressId,
         total: new Decimal(total),
         items: {
           create: items.map((item) => ({
@@ -25,14 +27,32 @@ export class OrdersService {
       },
       include: {
         items: true,
+        address: true,
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          },
+        },
       },
     });
+
+    return order; 
   }
 
   async getAllOrders() {
     return this.prisma.order.findMany({
       include: {
         items: true,
+        address: true,
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          },
+        },
       },
       orderBy: {
         createdAt: 'desc',
@@ -45,6 +65,14 @@ export class OrdersService {
       where: { id },
       include: {
         items: true,
+        address: true,
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          },
+        },
       },
     });
   }

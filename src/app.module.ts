@@ -7,7 +7,8 @@ import { PrismaModule } from './database/prisma.module';
 import { ProductsModule } from './products/products.module';
 import { OrdersModule } from './orders/orders.module';
 import { AuthModule } from './auth/auth.module';
-import { UserModule } from './user/user.module'; 
+import { UserModule } from './user/user.module';
+import { AddressModule } from './address/address.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { UserModule } from './user/user.module';
     ProductsModule,
     OrdersModule,
     AuthModule,
-    UserModule, 
+    UserModule,
+    AddressModule,
   ],
   controllers: [AppController],
   providers: [AppService],
