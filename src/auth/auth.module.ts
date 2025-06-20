@@ -1,8 +1,9 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
-import { PrismaModule } from '../database/prisma.module';
-import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
+import { AuthService } from './auth.service';
+import { PrismaModule } from '../database/prisma.module';
+import { AuthMiddleware } from './middleware/auth.middleware';
 
 @Module({
   imports: [
@@ -12,7 +13,21 @@ import { AuthController } from './auth.controller';
       signOptions: { expiresIn: '15m' },
     }),
   ],
-  controllers: [AuthController], 
-  providers: [AuthService],      
+  controllers: [AuthController],
+  providers: [AuthService],
+  exports: [AuthService],
 })
-export class AuthModule {}
+export class AuthModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(AuthMiddleware)
+      .exclude(
+        'auth/login',
+        'auth/register',
+        'products',
+        'products/:id',
+        'users/:id',
+      )
+      .forRoutes('*'); 
+  }
+}
