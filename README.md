@@ -1,98 +1,173 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# E-commerce Backend - Devnology
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Um backend robusto para e-commerce desenvolvido com NestJS, Prisma e PostgreSQL, focado em segurança e escalabilidade.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 🚀 Tecnologias Utilizadas
 
-## Description
+### Principais Dependências
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **NestJS** (`@nestjs/core`, `@nestjs/common`) - Framework Node.js progressivo para construção de aplicações server-side eficientes e escaláveis
+- **Prisma** (`@prisma/client`, `prisma`) - ORM moderno para TypeScript e Node.js que facilita o acesso ao banco de dados
+- **PostgreSQL** - Banco de dados relacional robusto e confiável
+- **JWT** (`@nestjs/jwt`, `jose`) - Para autenticação e autorização segura
+- **Bcrypt** (`bcrypt`) - Para hash seguro de senhas
+- **Axios** (`@nestjs/axios`, `axios`) - Cliente HTTP para consumo de APIs externas
+- **Class Validator** (`class-validator`, `class-transformer`) - Validação e transformação de dados
+- **Cookie Parser** (`cookie-parser`) - Manipulação de cookies HTTP
 
-## Project setup
+### Dependências de Desenvolvimento
 
+- **TypeScript** - Linguagem tipada baseada em JavaScript
+- **ESLint & Prettier** - Ferramentas de linting e formatação de código
+- **Jest** - Framework de testes
+- **SWC** - Compilador rápido para TypeScript/JavaScript
+
+## 📋 Pré-requisitos
+
+- Node.js (versão 18 ou superior)
+- Docker e Docker Compose
+- npm ou yarn
+
+## 🛠️ Como Rodar o Projeto
+
+### 1. Clone o repositório
 ```bash
-$ npm install
+git clone https://github.com/wagnerjunr/Ecommerce-Holding-Backend.git
+cd backend
 ```
 
-## Compile and run the project
-
+### 2. Instale as dependências
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+### 3. Configure as variáveis de ambiente
+Crie um arquivo `.env` na raiz do projeto com:
+```env
+DATABASE_URL="postgresql://usuario:senha@localhost:5432/ecommerce_db"
+JWT_SECRET="seu-jwt-secret-aqui"
+JWT_REFRESH_SECRET="seu-jwt-refresh-secret-aqui"
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
+### 4. Inicie o banco de dados com Docker
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+docker-compose up -d
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### 5. Execute as migrações do Prisma
+```bash
+npx prisma migrate dev
+```
 
-## Resources
+### 6. Gere o cliente Prisma
+```bash
+npx prisma generate
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+### 7. Inicie a aplicação
+```bash
+# Desenvolvimento
+npm run start:dev
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+A aplicação estará disponível em `http://localhost:3001`
 
-## Support
+## 🏗️ Decisões Técnicas
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### 1. Estruturação do Schema e Tecnologias Base
 
-## Stay in touch
+**PostgreSQL**: Escolhido como banco de dados principal por sua robustez e excelente performance para aplicações e-commerce.
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+**Prisma**: Utilizado como ORM por oferecer:
+- Type-safety completa com TypeScript
+- Migrações automáticas e versionamento de schema
+- Query builder intuitivo e performático
 
-## License
+**NestJS**: Framework escolhido por:
+- Arquitetura modular e escalável
+- Decorators e dependency injection nativos
+- Excelente integração com TypeScript
+- Ecosystem robusto com guards, interceptors e middlewares
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### 2. Sistema de Autenticação Seguro
+
+Implementação de um fluxo de autenticação robusto com:
+
+- **Tokens JWT**: Access tokens de curta duração e refresh tokens de longa duração
+- **Cookies HTTP-Only**: Tokens armazenados em cookies seguros para prevenir ataques XSS
+- **Refresh Token Rotation**: Refresh tokens são renovados a cada uso, aumentando a segurança
+- **Armazenamento Backend**: Refresh tokens são persistidos no banco de dados para controle de sessões
+
+### 3. Middleware de Autenticação
+
+Criação de um middleware personalizado (`auth.middleware.ts`) que:
+- Intercepta todas as rotas privadas automaticamente
+- Verifica a validade dos tokens antes de processar requisições
+- Realiza refresh automático de tokens quando necessário
+- Adiciona informações do usuário ao contexto da requisição
+
+### 4. Integração com APIs Externas
+
+Sistema de produtos que consome APIs externas:
+- **Produtos Brasileiros e Europeus**: Integração com múltiplas APIs externas
+- **Mapeamento de Dados**: Transformação e padronização de dados de diferentes fontes
+- **Cache e Performance**: Otimização para reduzir chamadas desnecessárias
+
+### 5. Arquitetura de Pedidos e Endereços
+
+Estrutura otimizada para e-commerce:
+
+**Endereços Vinculados ao Usuário**: 
+- Endereços pertencem ao usuário, não ao pedido
+- Facilita reutilização e gerenciamento de múltiplos endereços
+- Pedidos referenciam endereços via `addressId`
+
+**Gestão de Pedidos**:
+- Cada pedido possui itens detalhados com quantidade e preço
+- Status de pedido controlado via enum (`PENDING`, `CONFIRMED`, `SHIPPED`, etc.)
+- Relacionamentos bem definidos entre usuário, pedido, itens e endereço
+
+### 6. Validação com DTOs
+
+Implementação de Data Transfer Objects para:
+- **Validação de Entrada**: Uso de `class-validator` para validar dados recebidos
+- **Transformação de Dados**: Conversão automática de tipos com `class-transformer`
+- **Documentação Automática**: DTOs servem como documentação viva da API
+
+### 7. Gerenciamento de Cookies
+
+Estrutura segura para manipulação de cookies:
+- **HTTP-Only**: Cookies inacessíveis via JavaScript no frontend
+- **Secure**: Transmissão apenas via HTTPS em produção
+- **SameSite**: Proteção contra ataques CSRF
+- **Expiração Controlada**: Diferentes tempos de vida para access e refresh tokens
+
+## 🐳 Docker e Infraestrutura
+
+### Docker Compose
+O arquivo `docker-compose.yml` orquestra:
+- **PostgreSQL**: Banco de dados principal com persistência de dados
+- **Volumes**: Mapeamento para persistir dados do banco
+- **Environment**: Configurações de ambiente para desenvolvimento
+
+## 🔒 Segurança
+
+- Senhas hasheadas com bcrypt
+- Tokens JWT com expiração controlada
+- Cookies HTTP-Only para prevenir XSS
+- Validação rigorosa de entrada de dados
+- Middleware de autenticação em rotas protegidas
+
+## 📊 Schema do Banco de Dados
+
+O projeto utiliza as seguintes entidades principais:
+- **Users**: Usuários do sistema
+- **Orders**: Pedidos realizados
+- **OrderItems**: Itens de cada pedido
+- **Addresses**: Endereços dos usuários
+
+Todas as relações são bem definidas com chaves estrangeiras e constraints apropriadas.
+
+---
+
+**Desenvolvido com ❤️ usando as melhores práticas de desenvolvimento backend**
+        
