@@ -1,4 +1,4 @@
-# E-commerce Backend - Devnology
+# E-commerce Backend 
 
 Um backend robusto para e-commerce desenvolvido com NestJS, Prisma e PostgreSQL, focado em segurança e escalabilidade.
 
