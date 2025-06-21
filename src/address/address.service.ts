@@ -7,12 +7,13 @@ export class AddressService {
   constructor(private readonly prisma: PrismaService) {}
 
   async createAddress(createAddressDto: CreateAddressDto, userId: string) {
-    return this.prisma.address.create({
+    const address = await this.prisma.address.create({
       data: {
         ...createAddressDto,
         userId,
       },
     });
+    return address;
   }
 
   async getAddressesByUserId(userId: string) {

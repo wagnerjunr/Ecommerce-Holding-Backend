@@ -15,6 +15,22 @@ export class OrderItemDto {
   @IsNumber()
   @Min(1)
   quantity: number;
+
+  @IsString()
+  image: string;
+
+  @IsString()
+  description: string;
+
+  @IsString()
+  material: string;
+
+  @IsString()
+  provider: string;
+
+  @IsOptional()
+  @IsNumber()
+  discountValue?: number;
 }
 
 export class CreateOrderDto {

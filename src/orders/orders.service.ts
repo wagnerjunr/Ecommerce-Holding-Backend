@@ -10,7 +10,20 @@ export class OrdersService {
   async createOrder(createOrderDto: CreateOrderDto, userId: string) {
     const { items, total, addressId } = createOrderDto;
 
-    console.log(items)
+    console.log(items);
+
+    if (addressId) {
+      const address = await this.prisma.address.findFirst({
+        where: {
+          id: addressId,
+          userId: userId,
+        },
+      });
+
+      if (!address) {
+        throw new Error(`Address with id ${addressId} not found or doesn't belong to user`);
+      }
+    }
 
     const order = await this.prisma.order.create({
       data: {
@@ -22,6 +35,13 @@ export class OrdersService {
             productId: item.productId,
             quantity: item.quantity,
             price: new Decimal(item.price),
+            description: item.description,
+            image: item.image,
+            name: item.name,
+            discountValue: item.discountValue ? new Decimal(item.discountValue) : null,
+            provider: item.provider,
+            id: crypto.randomUUID(),
+            material: item.material,
           })),
         },
       },
