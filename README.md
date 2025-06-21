@@ -33,7 +33,6 @@ Um backend robusto para e-commerce desenvolvido com NestJS, Prisma e PostgreSQL,
 ### 1. Clone o repositório
 ```bash
 git clone https://github.com/wagnerjunr/Ecommerce-Holding-Backend.git
-cd backend
 ```
 
 ### 2. Instale as dependências
