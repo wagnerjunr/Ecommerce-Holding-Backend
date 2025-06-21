@@ -41,7 +41,9 @@ npm install
 ```
 
 ### 3. Configure as variáveis de ambiente
-Crie um arquivo `.env` na raiz do projeto com:
+O arquivo `.env` foi commitado junto do projeto para fins de facilitação dos testes, porém normalmente deve ser criado pelo usuário ao rodar a aplicação.
+
+Exemplo: Crie um arquivo `.env` na raiz do projeto com:
 ```env
 DATABASE_URL="postgresql://admin:admin@localhost:5432/ecommerce_devnology?schema=public"
 JWT_SECRET="seu-jwt-secret-aqui"
