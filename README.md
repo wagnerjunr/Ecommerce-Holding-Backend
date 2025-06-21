@@ -60,16 +60,15 @@ npx prisma migrate dev
 ```
 
 ### 6. Gere o cliente Prisma
-```bash
-npx prisma generate
 ```
-
+npx prisma generate
+```
 ### 7. Inicie a aplicação
-```bash
-# Desenvolvimento
-npm run start:dev
-
-A aplicação estará disponível em `http://localhost:3001`
+```
+# Desenvolvimento
+npm run start:dev
+```
+A aplicação estará disponível em http://localhost:3001
 
 ## 🏗️ Decisões Técnicas
 
