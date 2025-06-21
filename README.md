@@ -33,7 +33,6 @@ Um backend robusto para e-commerce desenvolvido com NestJS, Prisma e PostgreSQL,
 ### 1. Clone o repositório
 ```bash
 git clone https://github.com/wagnerjunr/Ecommerce-Holding-Backend.git
-cd backend
 ```
 
 ### 2. Instale as dependências
@@ -44,7 +43,7 @@ npm install
 ### 3. Configure as variáveis de ambiente
 Crie um arquivo `.env` na raiz do projeto com:
 ```env
-DATABASE_URL="postgresql://usuario:senha@localhost:5432/ecommerce_db"
+DATABASE_URL="postgresql://admin:admin@localhost:5432/ecommerce_devnology?schema=public"
 JWT_SECRET="seu-jwt-secret-aqui"
 JWT_REFRESH_SECRET="seu-jwt-refresh-secret-aqui"
 ```
