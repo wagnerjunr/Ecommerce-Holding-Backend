@@ -35,6 +35,7 @@ Obs:O projeto contém cors e o frontend deve estar rodando na porta 5173.
 ### 1. Clone o repositório
 ```bash
 git clone https://github.com/wagnerjunr/Ecommerce-Holding-Backend.git
+cd Ecommerce-Holding-Backend
 ```
 
 ### 2. Instale as dependências
